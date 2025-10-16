@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logo-container img {
+  width: 80px;
+  margin: 10px;
+}
+#loading-text {
+  font-size: 24px;
+  margin-top: 10px;
+  color: #00ff88;
+}
+.progress-bar {
+  width: 80%;
+  background: #333;
+  border-radius: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.bar {
+  height: 10px;
+  width: 100%;
+  background: linear-gradient(to right, #00ff88, #00ffaa);
+  animation: progressAnim 3s linear;
+}
+@keyframes progressAnim {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.main-content h1 {
+  font-size: 32px;
+  color: #00ff88;
+  text-shadow: 0 0 10px #00ff88;
+}
+.skill .bar div {
+  height: 8px;
+  background: #00ff88;
+  border-radius: 20px;
+}
+.bar {
+  background: #333;
+  border-radius: 20px;
+  margin: 10px auto;
+  width: 80%;
+}
+.btn-wa {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #00ff88;
+  color: #000;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 10px;
+  box-shadow: 0 0 10px #00ff88;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 8px;
+  background: #222;
+  border-radius: 10px;
+  margin-top: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #00ff88;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #00ff88;
+  animation: progressFill 3s forwards;
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
