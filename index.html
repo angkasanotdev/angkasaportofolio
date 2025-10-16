@@ -6,79 +6,12 @@
   <title>Portofolio Angkasa</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="logo.png" />
-  <script defer src="script.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
-
-  <script>
-  // Tunggu DOM siap
-  document.addEventListener("DOMContentLoaded", () => {
-    const loading = document.getElementById("loading-screen");
-    const mainContent = document.querySelector(".main-content");
-    const loadingText = document.getElementById("loading-text");
-
-    let dots = 0;
-    const dotInterval = setInterval(() => {
-      dots = (dots + 1) % 4;
-      loadingText.textContent = "Loading" + ".".repeat(dots);
-    }, 500);
-
-    setTimeout(() => {
-      clearInterval(dotInterval);
-      loading.style.display = "none";
-      mainContent.style.display = "block";
-      startTyping();
-      hitungPengunjung();
-    }, 3000);
-
-    const roles = [
-      "Welcome Sobat Coding",
-      "Di Website",
-      "Angkasa Portofolio",
-      "Ini Dia Portofolio",
-      "Dengan Tentang",
-      "Codingan Bot",
-      "Website",
-      "Dan Banyak Lagi"
-    ];
-    const nameElement = document.getElementById("dynamic-name");
-    let roleIndex = 0, charIndex = 0, typingForward = true;
-
-    function startTyping() {
-      setInterval(() => {
-        const currentText = roles[roleIndex];
-        if (typingForward) {
-          charIndex++;
-          if (charIndex > currentText.length) typingForward = false;
-        } else {
-          charIndex--;
-          if (charIndex === 0) {
-            typingForward = true;
-            roleIndex = (roleIndex + 1) % roles.length;
-          }
-        }
-        nameElement.textContent = currentText.substring(0, charIndex) + "|";
-      }, 100);
-    }
-
-    async function hitungPengunjung() {
-      try {
-        const pengunjungRef = db.collection("pengunjung").doc("total");
-        const doc = await pengunjungRef.get();
-        let count = doc.exists ? doc.data().count || 0 : 0;
-        count++;
-        await pengunjungRef.set({ count });
-        document.getElementById("visitor-count").textContent = `👀 Total Pengunjung: ${count}`;
-      } catch (e) {
-        document.getElementById("visitor-count").textContent = `👀 Total Pengunjung: Gagal`;
-        console.error("Error:", e);
-      }
-    }
-  });
-</script>
-  </head>
+</head>
 <body>
   <!-- Loading Screen -->
   <div id="loading-screen">
@@ -97,7 +30,7 @@
     <header>
       <h1 id="dynamic-name">Welcome Sobat Coding|</h1>
       <div class="icons">
-        <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/angkasanotdev" target="_blank"><i class="fab fa-github"></i></a>
       </div>
     </header>
 
@@ -141,5 +74,86 @@
       <p>© 2025 AngkasaNyaBobo | Dibuat dengan Tekun Dan Percaya Diri</p>
     </footer>
   </div>
+
+  <!-- Inisialisasi Firebase + Logika JS -->
+  <script>
+    // 1. Inisialisasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCUZLG11t5lI9VFucv9avBqw8ZTK7VgNxY",
+      authDomain: "bebas-16884.firebaseapp.com",
+      projectId: "bebas-16884",
+      storageBucket: "bebas-16884.firebasestorage.app",
+      messagingSenderId: "763935540433",
+      appId: "1:763935540433:web:e1b37727e4b69bce83f1f0",
+      measurementId: "G-KDKJ79XJ3J"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // 2. Jalankan setelah DOM siap
+    document.addEventListener("DOMContentLoaded", () => {
+      const loading = document.getElementById("loading-screen");
+      const mainContent = document.querySelector(".main-content");
+      const loadingText = document.getElementById("loading-text");
+
+      let dots = 0;
+      const dotInterval = setInterval(() => {
+        dots = (dots + 1) % 4;
+        loadingText.textContent = "Loading" + ".".repeat(dots);
+      }, 500);
+
+      setTimeout(() => {
+        clearInterval(dotInterval);
+        loading.style.display = "none";
+        mainContent.style.display = "block";
+        startTyping();
+        hitungPengunjung();
+      }, 3000);
+
+      const roles = [
+        "Welcome Sobat Coding",
+        "Di Website",
+        "Angkasa Portofolio",
+        "Ini Dia Portofolio",
+        "Dengan Tentang",
+        "Codingan Bot",
+        "Website",
+        "Dan Banyak Lagi"
+      ];
+      const nameElement = document.getElementById("dynamic-name");
+      let roleIndex = 0, charIndex = 0, typingForward = true;
+
+      function startTyping() {
+        setInterval(() => {
+          const currentText = roles[roleIndex];
+          if (typingForward) {
+            charIndex++;
+            if (charIndex > currentText.length) typingForward = false;
+          } else {
+            charIndex--;
+            if (charIndex === 0) {
+              typingForward = true;
+              roleIndex = (roleIndex + 1) % roles.length;
+            }
+          }
+          nameElement.textContent = currentText.substring(0, charIndex) + "|";
+        }, 100);
+      }
+
+      async function hitungPengunjung() {
+        try {
+          const pengunjungRef = db.collection("pengunjung").doc("total");
+          const doc = await pengunjungRef.get();
+          let count = doc.exists ? doc.data().count || 0 : 0;
+          count++;
+          await pengunjungRef.set({ count });
+          document.getElementById("visitor-count").textContent = `👀 Total Pengunjung: ${count}`;
+        } catch (e) {
+          document.getElementById("visitor-count").textContent = `👀 Total Pengunjung: Gagal`;
+          console.error("Error:", e);
+        }
+      }
+    });
+  </script>
 </body>
 </html>
