@@ -8,7 +8,7 @@
   <link rel="icon" href="logo.png" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase SDK (tanpa spasi!) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
 </head>
@@ -75,9 +75,7 @@
     </footer>
   </div>
 
-  <!-- Inisialisasi Firebase + Logika JS -->
   <script>
-    // 1. Inisialisasi Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyCUZLG11t5lI9VFucv9avBqw8ZTK7VgNxY",
       authDomain: "bebas-16884.firebaseapp.com",
@@ -90,7 +88,6 @@
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // 2. Jalankan setelah DOM siap
     document.addEventListener("DOMContentLoaded", () => {
       const loading = document.getElementById("loading-screen");
       const mainContent = document.querySelector(".main-content");
